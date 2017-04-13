@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="info" name="cm">
+    <properties>           
+        <property name="consolelayoutPattern">%d{HH:mm:ss.SSS} %-5p %-30.30c{2}-[%X{UserId}|%X{ServiceSequence}|%X{ClientIP}|%X{RequestURI}|%X{LogSequence}]-%m%n%throwable{full}</property>
+        <property name="filelayoutPattern">%d{HH:mm:ss.SSS} %-5p %-30.30c{2}-[%X{UserId}|%X{ServiceSequence}|%X{ClientIP}|%X{RequestURI}|%X{LogSequence}]-%m%n%throwable{full}</property>
+        <!-- The LOG4JPATH is read from system envoirment and can be set in command prompt as : "SET LOG4JPATH=d:/log/bsi/admin/total/"  -->
+        <property name="baseFolder">d:/logs</property>
+        <property name="fileName">${baseFolder}/cm/totalLog.log</property>
+        <property name="fileNamePattern">${baseFolder}/cm/totalLog-%d{yyyy-MM-dd}-%i.log</property>
+        <property name="maxFileSize">150 MB</property>
+    </properties>
+    <Appenders> 
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="${consolelayoutPattern}" />
+        </Console>
+        <RollingRandomAccessFile name="TotallogFileAppender"
+            fileName="${fileName}" filePattern="${fileNamePattern}">
+            <PatternLayout pattern="${filelayoutPattern}" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="${maxFileSize}" />
+            </Policies>
+            <DefaultRolloverStrategy max="2000" />
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <logger name="net.iranet.isc.cm" level="debug" />
+		<!-- Set this to display hibernate sql parameter values -->
+        <logger name="org.hibernate.type" level="trace" />
+        
+        <Root level="info">
+            <!--Uncomment the ConsloeAppender to see logs during development--> 
+            <AppenderRef ref="ConsoleAppender" /> 
+            <AppenderRef ref="TotallogFileAppender" />
+        </Root>
+    </Loggers>
+</Configuration>

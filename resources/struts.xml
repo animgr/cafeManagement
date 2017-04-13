@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+	<constant name="struts.action.extension" value="cm" />
+    <constant name="struts.objectFactory.spring.autoWire.alwaysRespect" value="true" />
+                                                     
+	<constant name="struts.custom.i18n.resources"
+		value="messages/resources,messages/config,messages/xml" />
+
+    <!-- Configure the convention plugin-->
+	<constant name="struts.convention.default.parent.package" value="cm-default" />	
+	<constant name="struts.convention.redirect.to.slash" value="false" />
+	<constant name="struts.convention.action.alwaysMapExecute" value="false" />
+	
+	<!-- Enable json validation-->
+	<constant name="struts.enableJSONValidation" value="true" />
+	
+    <!-- The struts webconsole is displayed regardless of devMode settings. Remove this line if you want to view debug console -->
+	<constant name="struts.action.excludePattern" value="/struts/webconsole.html"/>
+	
+	<!-- set the default locale -->
+	<constant name="struts.locale" value="fa_IR" />
+
+	<!-- Theme -->
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.freemarker.templatesCache" value="true" />
+
+    <!-- Conversation  -->
+	<constant name="conversation.max.instances" value="1" />
+	
+	<!-- Debug Mode -->
+	<constant name="struts.devMode" value="false" />
+			
+	<include file="cm-struts-package.xml" />
+
+</struts>

@@ -1,0 +1,8 @@
+/*The pretty print have long lines with NO space which needs to be wrapped*/
+.prettyprint {
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap; /* Firefox */
+	white-space: -pre-wrap; /* Opera <7 */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	word-wrap: break-word; /* IE */
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="cm-default"
+		extends="struts-default,json-default">
+		<interceptors>
+			<interceptor name="validateActionAccess"
+				class="net.iranet.isc.saba.web.interceptors.ValidateActionAccessInterceptor" />
+			<!--Do not change order of interceptors unless you know what you do! -->
+			<interceptor-stack name="CMBaseStack">
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="checkbox"/>
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="scopedModelDriven" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="actionMappingParams" />
+				<interceptor-ref name="params"/>
+				<!-- The validation interceptor will only validate the input and fill 
+					the validation errors. The workflow interceptor, An interceptor that makes 
+					sure there are not validation errors before allowing the interceptor chain 
+					to continue. This interceptor does not perform any validation. The jsonValidation 
+					just put errors in json format. -->
+				<interceptor-ref name="validation">
+					<param name="validateAnnotatedMethodOnly">true</param>
+				</interceptor-ref>
+				<interceptor-ref name="jsonValidation" />
+				<interceptor-ref name="workflow" />
+			</interceptor-stack>
+
+            <!--Actions which require login should use this stack -->
+			<interceptor-stack name="CMPrivateStack">						    
+				<interceptor-ref name="CMBaseStack" />
+			</interceptor-stack>
+			
+            <!--Actions which could be access without login should use this stack -->
+			<interceptor-stack name="CMPublicStack">
+				<interceptor-ref name="CMBaseStack" />
+			</interceptor-stack>
+			
+			
+		</interceptors>
+		
+        <!--As lots of actions require login users, we set the default to private stack -->
+		<default-interceptor-ref name="CMPrivateStack" />
+		
+	</package>
+
+</struts>
