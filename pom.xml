@@ -15,7 +15,7 @@
 		<servlet.version>3.1.0</servlet.version>
 		<jsp.version>2.2</jsp.version>
 		<jstl.version>1.2</jstl.version>
-		<struts2.version>2.5.5</struts2.version>
+		<struts2.version>2.5.22</struts2.version>
 		<struts2-conversation-scope-plugin.version>1.7.4</struts2-conversation-scope-plugin.version>
 		<sl4j.version>1.7.24</sl4j.version>
 		<aspectj.version>1.8.8</aspectj.version>
